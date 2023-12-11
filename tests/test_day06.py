@@ -3,7 +3,8 @@ from math import ceil, floor
 
 from advent_of_code_2023.helpers.quadratic_solver import quadratic_solver
 
-NUMBER_ENTRIES = re.compile(r'\d+')
+NUMBER_ENTRIES = re.compile(r"\d+")
+
 
 def test_day06_example():
     print()
@@ -16,10 +17,14 @@ Distance:  9  40  200"""
 
     margin_of_error = 1
     for b, c in zip(times, distances):
-        lh_zero, rh_zero = quadratic_solver(-1, b, -(c+0.0001)) # add a small delta to c in order to ensure we're >
+        lh_zero, rh_zero = quadratic_solver(
+            -1, b, -(c + 0.0001)
+        )  # add a small delta to c in order to ensure we're >
 
-        print(f"For b={b}, c={-c}, the solution range is: {(floor(rh_zero) - ceil(lh_zero) + 1)}")
-        margin_of_error *= (floor(rh_zero) - ceil(lh_zero) + 1)
+        print(
+            f"For b={b}, c={-c}, the solution range is: {(floor(rh_zero) - ceil(lh_zero) + 1)}"
+        )
+        margin_of_error *= floor(rh_zero) - ceil(lh_zero) + 1
 
     print(f"Day 06, Example 01, margin of error is: {margin_of_error}")
 
@@ -28,12 +33,17 @@ Distance:  9  40  200"""
     distance = int("".join([m for m in NUMBER_ENTRIES.findall(distances_line)]))
 
     margin_of_error = 1
-    lh_zero, rh_zero = quadratic_solver(-1, time, -(distance+0.0001)) # add a small delta to c in order to ensure we're >
+    lh_zero, rh_zero = quadratic_solver(
+        -1, time, -(distance + 0.0001)
+    )  # add a small delta to c in order to ensure we're >
 
-    print(f"For b={time}, c={-distance}, the solution range is: {(floor(rh_zero) - ceil(lh_zero) + 1)}")
-    margin_of_error *= (floor(rh_zero) - ceil(lh_zero) + 1)
+    print(
+        f"For b={time}, c={-distance}, the solution range is: {(floor(rh_zero) - ceil(lh_zero) + 1)}"
+    )
+    margin_of_error *= floor(rh_zero) - ceil(lh_zero) + 1
 
     print(f"Day 06, Example 01, margin of error is: {margin_of_error}")
+
 
 def test_day06():
     print()
@@ -46,10 +56,14 @@ def test_day06():
 
     margin_of_error = 1
     for b, c in zip(times, distances):
-        lh_zero, rh_zero = quadratic_solver(-1, b, -(c+0.0001)) # add a small delta to c in order to ensure we're >
+        lh_zero, rh_zero = quadratic_solver(
+            -1, b, -(c + 0.0001)
+        )  # add a small delta to c in order to ensure we're >
 
-        print(f"For b={b}, c={-c}, the solution range is: {(floor(rh_zero) - ceil(lh_zero) + 1)}")
-        margin_of_error *= (floor(rh_zero) - ceil(lh_zero) + 1)
+        print(
+            f"For b={b}, c={-c}, the solution range is: {(floor(rh_zero) - ceil(lh_zero) + 1)}"
+        )
+        margin_of_error *= floor(rh_zero) - ceil(lh_zero) + 1
 
     print(f"Day 06, Part 01, margin of error is: {margin_of_error}")
 
@@ -58,12 +72,13 @@ def test_day06():
     distance = int("".join([m for m in NUMBER_ENTRIES.findall(distances_line)]))
 
     margin_of_error = 1
-    lh_zero, rh_zero = quadratic_solver(-1, time, -(distance+0.0001)) # add a small delta to c in order to ensure we're >
+    lh_zero, rh_zero = quadratic_solver(
+        -1, time, -(distance + 0.0001)
+    )  # add a small delta to c in order to ensure we're >
 
-    print(f"For b={time}, c={-distance}, the solution range is: {(floor(rh_zero) - ceil(lh_zero) + 1)}")
-    margin_of_error *= (floor(rh_zero) - ceil(lh_zero) + 1)
+    print(
+        f"For b={time}, c={-distance}, the solution range is: {(floor(rh_zero) - ceil(lh_zero) + 1)}"
+    )
+    margin_of_error *= floor(rh_zero) - ceil(lh_zero) + 1
 
     print(f"Day 06, Example 02, margin of error is: {margin_of_error}")
-
-
-

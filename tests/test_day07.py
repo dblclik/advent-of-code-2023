@@ -1,4 +1,9 @@
-from advent_of_code_2023.helpers.camel_cards import CamelCardOutcomes, classify_hand, CARD_RANKS_PART02
+from advent_of_code_2023.helpers.camel_cards import (
+    CamelCardOutcomes,
+    classify_hand,
+    CARD_RANKS_PART02,
+)
+
 
 def test_card_classifier():
     hand_outcomes = {
@@ -16,6 +21,7 @@ def test_card_classifier():
         outcome, strength = classify_hand(k)
         assert outcome == v
         print(f"Card strength is: {strength}")
+
 
 def test_day07_example():
     hands = """32T3K 765
@@ -38,10 +44,9 @@ QQQJA 483"""
     part1_score = 0
     for ind, hand in enumerate(hands_tuples):
         print(hand)
-        part1_score += (ind+1)*hand[-1]
+        part1_score += (ind + 1) * hand[-1]
 
     print(f"Day 07, Part 01 Example: {part1_score}")
-
 
     print()
     hands_tuples = []
@@ -49,7 +54,9 @@ QQQJA 483"""
         if len(line) > 0:
             hand, score = line.split(" ")
             score = int(score)
-            outcome, strength = classify_hand(hand, strength_lookup = CARD_RANKS_PART02, optimize_j=True)
+            outcome, strength = classify_hand(
+                hand, strength_lookup=CARD_RANKS_PART02, optimize_j=True
+            )
             hands_tuples.append((outcome.value, *strength, score))
 
     hands_tuples.sort(key=lambda x: (x[0], x[1], x[2], x[3], x[4], x[5]), reverse=True)
@@ -57,9 +64,10 @@ QQQJA 483"""
     part2_score = 0
     for ind, hand in enumerate(hands_tuples):
         print(hand)
-        part2_score += (ind+1)*hand[-1]
+        part2_score += (ind + 1) * hand[-1]
 
     print(f"Day 07, Part 02 Example: {part2_score}")
+
 
 def test_day07():
     hands = open("inputs/input-07.txt").read()
@@ -77,7 +85,7 @@ def test_day07():
 
     part1_score = 0
     for ind, hand in enumerate(hands_tuples):
-        part1_score += (ind+1)*hand[-1]
+        part1_score += (ind + 1) * hand[-1]
 
     print(f"Day 07, Part 01: {part1_score}")
 
@@ -87,7 +95,9 @@ def test_day07():
         if len(line) > 0:
             hand, score = line.split(" ")
             score = int(score)
-            outcome, strength = classify_hand(hand, strength_lookup = CARD_RANKS_PART02, optimize_j=True)
+            outcome, strength = classify_hand(
+                hand, strength_lookup=CARD_RANKS_PART02, optimize_j=True
+            )
             hands_tuples.append((outcome.value, *strength, score))
 
     hands_tuples.sort(key=lambda x: (x[0], x[1], x[2], x[3], x[4], x[5]), reverse=True)
@@ -95,6 +105,6 @@ def test_day07():
     part2_score = 0
     for ind, hand in enumerate(hands_tuples):
         print(hand)
-        part2_score += (ind+1)*hand[-1]
+        part2_score += (ind + 1) * hand[-1]
 
     print(f"Day 07, Part 02 Example: {part2_score}")

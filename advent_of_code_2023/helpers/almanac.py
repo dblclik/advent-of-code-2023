@@ -1,5 +1,6 @@
 from pydantic import BaseModel
 
+
 class ValueRange(BaseModel):
     start: int
     width: int
@@ -9,6 +10,7 @@ class ValueRange(BaseModel):
         if check_value >= self.start and check_value <= (self.start + self.width - 1):
             return check_value + self.offset
         return None
+
 
 class Almanac:
     def __init__(self, almanac_input):
@@ -28,11 +30,11 @@ class Almanac:
             "water-to-light map:": self.water_to_light,
             "light-to-temperature map:": self.light_to_temperature,
             "temperature-to-humidity map:": self.temperature_to_humidity,
-            "humidity-to-location map:": self.humidity_to_location
+            "humidity-to-location map:": self.humidity_to_location,
         }
 
         self.parse_contents()
-        
+
     def contents_generator(self) -> str:
         for line in self.file_contents.split("\n"):
             yield line
@@ -48,7 +50,11 @@ class Almanac:
                 else:
                     if current_section is not None:
                         dest, source, width = [m for m in map(int, line.split(" "))]
-                        current_section.append(ValueRange(start=source, width=width, offset=(dest - source)))
+                        current_section.append(
+                            ValueRange(
+                                start=source, width=width, offset=(dest - source)
+                            )
+                        )
 
     def get_destination(self, source_value, map):
         range_map = self.map_map[map]
@@ -56,7 +62,7 @@ class Almanac:
             next_value = range_value(source_value)
             if next_value is not None:
                 return next_value
-        
+
         return source_value
 
     def traverse_seed_to_location(self, seed_value, debug=False):
@@ -71,5 +77,3 @@ class Almanac:
         return current_value
 
         return current_value
-
-    

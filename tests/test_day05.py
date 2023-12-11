@@ -2,6 +2,7 @@ from advent_of_code_2023.helpers.almanac import Almanac
 from tqdm import tqdm
 from multiprocessing import Pool, cpu_count
 
+
 def test_day05_example():
     test_input = """seeds: 79 14 55 13
 
@@ -61,14 +62,22 @@ humidity-to-location map:
 
     print(f"The minimum location for Part 02 is: {min(location_array)}")
 
+
 def find_minimum_for_input_range(seed_index):
     input_contents = open("inputs/input-05.txt").read()
     almanac = Almanac(input_contents)
 
     min_value = None
 
-    print(f"Starting the traversal search for seed {almanac.seeds[seed_index]} with range of {almanac.seeds[seed_index+1]}")
-    for seed in tqdm(range(almanac.seeds[seed_index], almanac.seeds[seed_index] + almanac.seeds[seed_index+1])):
+    print(
+        f"Starting the traversal search for seed {almanac.seeds[seed_index]} with range of {almanac.seeds[seed_index+1]}"
+    )
+    for seed in tqdm(
+        range(
+            almanac.seeds[seed_index],
+            almanac.seeds[seed_index] + almanac.seeds[seed_index + 1],
+        )
+    ):
         location = almanac.traverse_seed_to_location(seed)
         if min_value is None or location < min_value:
             min_value = location
